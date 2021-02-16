@@ -1,0 +1,50 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webservice-deployment
+  labels:
+    app: webservice
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: webservice
+  template:
+    metadata:
+      labels:
+        app: webservice
+    spec:
+      containers:
+        - name: webservice
+          image: hello_flask:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000
+          env:
+            - name: FLASK_APP
+              value: project/__init__.py
+            - name: FLASK_ENV
+              value: development
+            - name: DATABASE_URL
+              value: postgresql://hello_flask:hello_flask@pgsql:5432/hello_flask_dev
+            - name: SQL_HOST
+              value: pgsql
+            - name: SQL_PORT
+              value: "5432"
+            - name: DATABASE
+              value: postgres
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webservice
+spec:
+  ports:
+  - port: 5000
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: webservice
+  type: LoadBalancer
