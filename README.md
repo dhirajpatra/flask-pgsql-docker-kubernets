@@ -12,7 +12,11 @@ first build all container and images
 
 `docker-compose up --build -d`
 
+`docker-compose down`
+
 `eval $(minikube docker-env)`
+
+`docker images`
 
 `docker build -f ./services/web/Dockerfile -t hello_flask:latest ./services/web`
 
