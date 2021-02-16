@@ -14,7 +14,7 @@ first build all container and images
 
 `eval $(minikube docker-env)`
 
-`docker build -f ./services/web/Dockerfile -t hello_flask:latest ./services/webservice`
+`docker build -f ./services/web/Dockerfile -t hello_flask:latest ./services/web`
 
 can test with 
 
