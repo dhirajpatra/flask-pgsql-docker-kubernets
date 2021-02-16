@@ -8,6 +8,12 @@ Kindly follow this link https://kubernetes.io/docs/tasks/tools/install-kubectl/
 
 ### how to run
 
+first build all container and images 
+
+`docker-compose up --build -d`
+
+`eval $(minikube docker-env)`
+
 `docker build -f ./services/web/Dockerfile -t hello_flask:latest ./services/webservice`
 
 can test with 
